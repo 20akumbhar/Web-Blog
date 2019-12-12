@@ -81,3 +81,11 @@ div::-webkit-scrollbar {
     color: crimson;
     text-decoration: underline;
   }
+
+  .s:hover{
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    color:crimson;
+      transition-duration: .5s;
+  }
