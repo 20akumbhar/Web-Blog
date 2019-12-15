@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Full Editor - Quill Rich Text Editor</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="language" content="english">
+  <meta name="viewport" content="width=device-width">
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+
+  <link rel="stylesheet" href="quill/quill.snow.css" />
+
+
+  <style>
+    .chip {
+      margin-top: 8px;
+      margin-right: 3px;
+      display: inline-block;
+      padding: 0 25px;
+      height: 30px;
+      font-size: 15px;
+      line-height: 30px;
+      border-radius: 25px;
+      background-color: #f1f1f1;
+    }
+
+    .closebtn {
+      padding-left: 10px;
+      color: #888;
+      font-weight: bold;
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .closebtn:hover {
+      color: #000;
+    }
+
+    .is-invalid {
+      display: block;
+    }
+
+    body>#standalone-container {
+      margin: 50px auto;
+      max-width: 720px;
+    }
+
+    #editor-container {
+      min-height: 500px;
+    }
+    .invisible{
+      display: none;
+    }
+  </style>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+
+  <div id="standalone-container">
+    <input type="text" name="title" id="title" style="padding: 10px; width: 100%; margin-bottom: 6px;"
+      placeholder="Title Here...">
+      <div class="text-danger invisible" id="title-err">**Title Required</div>
+
+    <div id="toolbar-container">
+      <span class="ql-formats">
+        <select class="ql-font"></select>
+        <select class="ql-size"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-script" value="sub"></button>
+        <button class="ql-script" value="super"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-header" value="1"></button>
+        <button class="ql-header" value="2"></button>
+        <button class="ql-blockquote"></button>
+        <button class="ql-code-block"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-direction" value="rtl"></button>
+        <select class="ql-align"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+        <button class="ql-image"></button>
+        <button class="ql-video"></button>
+        <button class="ql-formula"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-clean"></button>
+      </span>
+    </div>
+    <div class="bg-dark" id="editor-container"></div>
+    <div class="text-danger invisible" id="post-err">**This is empty</div>
+
+    <div style="width: 100%; margin-top: 10px; padding: 10px;" class="border" id="thumb-div">
+      <h6>Upload Thumbnails :</h6>
+      <input type="file" name="thumbnail" id="thumb">
+      <img src="#" alt="thumnail" style="width: 200px; height: 200px;" id="thumbnail">
+      <div class="text-danger is-invalid" id="thumb-err">**Invalid Type</div>
+    </div>
+    <div style="width: 100%; text-align: left; margin-top: 10px; padding: 20px;" class="border">
+      <h6>Add Tags:(Max. 5)</h6>
+      <div id="tag-area">
+      </div>
+      <div style="width: 100%; margin-top: 10px;">
+        <input type="text" id="chip-text"><button style="margin-left: 8px;" class="btn-outline-dark"
+          id="add-tag">Add</button>
+      </div>
+    </div>
+    <div style="display: block; width: 100%; text-align: center; margin-top: 20px;">
+      <button  class="btn btn-secondary" id="save">Save</button>
+      <button class="btn btn-success" id="publish">Publish</button>
+    </div>
+  </div>
+
+  <!--------------------------------------------modal------------------------------------------->
+  
+
+  <!-- Modal -->
+  <div class="modal modal3 fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modal-c-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal2-title">Saving</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-------------------------------------------------------------------------------------------->
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+  <script src="quill/quill.min.js"></script>
+  <script src="scripts/jquery.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  <script>
+    var chip_count=0;
+    var tags=["","","","",""];
+    var quill = new Quill('#editor-container', {
+      modules: {
+        formula: true,
+        syntax: true,
+        toolbar: '#toolbar-container'
+      },
+      placeholder: 'Compose an epic...',
+      theme: 'snow'
+    });
+
+
+
+
+    //----------------------- Publish Button Click ----------------------------------------------
+
+
+    $("#publish").click(function () {
+    
+      //---------title validation---------------------
+      var title = $("#title").val();
+      if(title===""){
+        $("#title-err").removeClass("invisible");
+        $("#title").addClass("border-danger");
+        window.location.href="#title";
+        return;
+      }else{
+        $("#title-err").addClass("invisible");
+        $("#title").removeClass("border-danger");
+      }
+
+      //------------thumbnail validation---------------
+      var thumbnaildata = $("#thumb").prop("files")[0];
+      if(thumbnaildata==null){
+        $("#thumb-err").show();
+            $("#thumbnail").fadeOut();
+            $("#thumb-div").addClass("border-danger");
+            window.location.href="#thumb-div";
+            return;
+      }else if($.inArray(thumbnaildata["type"], validImageTypes) < 0){     
+        $("#thumb-err").show();
+        $("#thumbnail").fadeOut();
+            $("#thumb-div").addClass("border-danger");
+            window.location.href="#thumb-div";
+            return;
+      }else {
+        $("#thumb-err").hide();
+            $("#thumbnail").fadeIn();
+            $("#thumb-div").removeClass("border-danger");
+      }
+
+      //-----------post validation---------------------
+      var html = quill.root.innerHTML;
+      if(html==="<p><br></p>"){
+        $("#post-err").removeClass("invisible");
+        $("#editor-container").addClass("border-danger");
+        return;
+      }else{
+        $("#post-err").addClass("invisible");
+        $("#editor-container").removeClass("border-danger");
+      }
+//------------correct data--------------
+console.log("tittle :"+title);
+      console.log("delta : " + html);
+      console.log("tags :"+tags);
+
+      //---showing modal-----
+      $('.modal-body').show();
+      document.getElementById("modal2-title").innerHTML="Publishing..";
+      $("#modal2-title").removeClass("text-white");
+
+  $(".modal-c-3").removeClass("bg-success");
+ $('.modal3').modal({
+        show: true
+})
+setTimeout(function(){
+  $('.modal-body').hide();
+  document.getElementById("modal2-title").innerHTML="Published Successfully";
+  $("#modal2-title").addClass("text-white");
+  $(".modal-c-3").addClass("bg-success");
+}, 2000);
+
+
+      //alert(title);
+    });
+    
+    
+    //-------------------------------------------------------------------------------------------
+
+
+
+//--------------------------- Save Button Click     ---------------------------------------------
+
+
+
+$("#save").click(function(){
+ var title= $("#title").val();
+ var html = quill.root.innerHTML;
+ var thumbnaildata = $("#thumb").prop("files")[0];
+ $('.modal-body').show();
+ document.getElementById("modal2-title").innerHTML="Saving...";
+ $("#modal2-title").removeClass("text-white");
+
+  $(".modal-c-3").removeClass("bg-success");
+ $('.modal3').modal({
+        show: true
+})
+setTimeout(function(){
+  $('.modal-body').hide();
+  document.getElementById("modal2-title").innerHTML="Saved Successfully";
+  $("#modal2-title").addClass("text-white");
+  $(".modal-c-3").addClass("bg-success");
+}, 2000);
+});
+
+
+
+//-----------------------------------------------------------------------------------------------
+
+
+
+
+
+    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    $("#thumbnail").hide();
+    $("#thumb-err").hide();
+
+    $("#thumb").change(function () {
+      
+      var thumbnaildata = $("#thumb").prop("files")[0];
+
+      if ($.inArray(thumbnaildata["type"], validImageTypes) < 0) {
+            $("#thumb-err").show();
+            $("#thumbnail").fadeOut();
+            $("#thumb-div").addClass("border-danger");
+
+            return;
+          } else {
+            $("#thumb-err").hide();
+            $("#thumbnail").fadeIn();
+            $("#thumb-div").removeClass("border-danger");
+
+          }
+
+      previewThumbnail(this);
+      // var thumbnail = $("#thumb").prop("files")[0];
+
+    });
+
+    function previewThumbnail(thumbnail) {
+      if (thumbnail.files && thumbnail.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#thumbnail").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(thumbnail.files[0]);
+      }
+    }
+
+    $("#add-tag").click(function () {
+      chip_count++;
+      var text = $("#chip-text").val();
+      tags[chip_count]=text;
+      var chip = "<div class='chip' id='chip-"+chip_count+"'>" + text + "<span class='closebtn'";
+      chip = chip + "onclick=deletechip("+chip_count+"); >&times;</span></div>";
+      $("#tag-area").append(chip);      
+      if(chip_count>=5){
+        $("#chip-text").prop( "disabled", true );
+        $(this).prop("disabled", true);
+      }
+      else{
+        $("#chip-text").prop( "disabled", false );
+        $(this).prop("disabled", false);
+      }
+      $("#chip-text").val("");
+    });
+
+    function deletechip(count){
+      $("#chip-"+count).hide();
+      chip_count--;
+      $("#chip-text").prop( "disabled", false );
+      $("#add-tag").prop("disabled", false);
+
+    }
+//-------------model on success
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+  </script>
+
+
+</body>
+
+</html>

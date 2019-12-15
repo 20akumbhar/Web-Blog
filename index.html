@@ -1,66 +1,299 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.5.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.5.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.5.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.5.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.5.2/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/7.5.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <!--script defer src="/__/firebase/7.5.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.5.2/firebase-database.js"></script-->
+  <script defer src="/__/firebase/7.5.2/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/7.5.2/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+  <link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body class="bg-dark">
+  <!----------Main Navbar----------->
+  <nav class="navbar navbar-light" style="position: sticky; top: 0; z-index: 100;">
+    <a href="#" class="navbar-brand text-white">
+      <i class="fas fa-times button-show close float-left" style="cursor: pointer; padding: 4px;"></i>
+
+      <i class="fas fa-bars" style="font-size: larger; cursor: pointer; padding: 4px;" id="toggle-icon"></i>
+
+      <img src="images/image_6.jpg" height="40" width="40" alt="LOGO" srcset="">
+      Shadow
+    </a>
+    <div class="text-white"><a href="#" style="cursor: pointer;" class="text-white"><i class="fab fa-facebook-square s"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-github"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-instagram"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="fab s fa-linkedin"
+          style="margin-right: 10px;"></i></a></div>
+  </nav>
+
+  <!----------After Main Navbar---------->
+  <div class="row">
+    <div class="col-sm-2 side-bar" id="sidebar" style="overflow: hidden; background-color: #282828;">
+      <ul class="nav flex-column text-white">
+        <li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="switchview('pages/post.html');">Trending</a>
+        </li>
+      </ul>
+      <hr>
+      <!--button type="button" class="btn btn-success align-middle" data-toggle="modal"
+            data-target="#subscribeModal">Subscribe</button-->
+      <div class="text-white">
+        subscribe for updates
+        <input type="email" name="email" id="email" placeholder="Email Id" style="margin: 2px;">
+        <i class="far float-right fa-paper-plane text-white" style="margin: 4px; margin-bottom: 10px;"></i>
+      </div>
+      <hr>
+      <div class="text-white">
+        <p style="margin-top: auto ;">Copyright ©2019 <br> All rights reserved | <br>
+          made with <i class="far fa-heart"></i> by Ajinkya</p>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <div class="col-sm-7 text-white " id="post-area" style="overflow-y: scroll; height: 90vh; margin: 10px;">
+      <!--main contents-->
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="padding-left: 40px; padding-top: 20px;">
+          <img src="images/image_6.jpg" width="150" height="150" alt="post img" class="border rounded-circle">
+        </div>
+        <div class="col-sm-8 text-white" style="padding-top: 20px;">
+          <h3 class="text-white">A loving hasdome is the true power, andsome more tests</h3>
+          <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span>
+          <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          <i class="far fa-comment-dots text-white" style="padding-left: 10px;"></i> 13
+          <p style="padding-top: 16px;">A Short description of the post will be here.</p>
+          <p style="color: firebrick; cursor: pointer;">Read More ></p>
+        </div>
+      </div>
 
-    <script>
-      window.location="public/";
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    </div>
+    <!-- Right Side Bar-->
+    <div class="col-sm bg-dark" style="height: 90vh; overflow-y: scroll; ">
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+      <div style="margin-left: 20px;">
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-sm" style="margin-top: 40px; margin-right: 40px; margin-bottom: 40px;">
+            <i style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); -ms-transform: translateY(-50%);"
+              class="fa fa-search"></i>
+            <input class="form-control d-inline-block" type="text" placeholder="Search.." name="search">
+          </div>
+        </div>
+        <h4 class="text-white" style="margin-bottom: 40px;"><i>Categories</i></h4>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+        <p class="text-white">Fashion (10)</p>
+        <hr>
+
+        <h4 class="text-white" style="margin-bottom: 40px;"><i>Popular</i></h4>
+
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <div class="row text-white">
+          <div class="col-sm-3">
+            <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+          </div>
+          <div class="col-sm align-top">
+            <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+            <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+            <i class="far fa-comment-dots text-white"></i> 13
+            <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+          </div>
+        </div>
+        <hr>
+        <br><br><br><br>
+      </div>
+
+    </div>
+  </div>
+  <script src="scripts/jquery.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/app2.js"></script>
+
+</body>
+
 </html>
