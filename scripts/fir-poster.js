@@ -67,6 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                             .then(function (docRef) {
                                 console.log("Document written with ID: ", docRef.id);
+                                db.collection("Saved").doc(savingid).delete().then(function() {
+                                    console.log("Document successfully deleted!");
+                                }).catch(function(error) {
+                                    console.error("Error removing document: ", error);
+                                });
 
                                 $('.modal-body').hide();
                                 document.getElementById("modal2-title").innerHTML = "Published Successfully";
