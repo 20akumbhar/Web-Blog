@@ -1,196 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
 
-    <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.css">
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/7.5.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <!--script defer src="/__/firebase/7.5.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.5.2/firebase-database.js"></script-->
+  <script defer src="/__/firebase/7.5.2/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/7.5.2/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.css">
+  <link rel="stylesheet" href="../styles/style.css">
+  <style>
+     #post-area img{
+          width: 80%;
+          text-align: center;
+          margin-left: auto !important;
+          margin-right: auto !important;
+
+          display: block !important;
+      }
+  .chip {
+      margin-top: 8px;
+      margin-right: 3px;
+      display: inline-block;
+      padding: 0 25px;
+      height: 30px;
+      font-size: 15px;
+      line-height: 30px;
+      border-radius: 25px;
+      background-color: #f1f1f1;
+    }
+  </style>
+
 </head>
- 
 
 <body class="bg-dark">
-    <nav class="navbar navbar-light" style="position: sticky; top: 0; z-index: 100;">
-        <a href="#" class="navbar-brand text-white">
-            <i class="fas fa-times button-show close float-left" style="cursor: pointer; padding: 4px;"></i>
+  <!----------Main Navbar----------->
+  <nav class="navbar navbar-light" style="position: sticky; top: 0; z-index: 100;">
+    <a href="#" class="navbar-brand text-white">
+      <i class="fas fa-times button-show close float-left" style="cursor: pointer; padding: 4px;"></i>
 
-            <i class="fas fa-bars" style="font-size: larger; cursor: pointer; padding: 4px;" id="toggle-icon"></i>
+      <i class="fas fa-bars" style="font-size: larger; cursor: pointer; padding: 4px;" id="toggle-icon"></i>
 
-            <img src="../images/image_6.jpg" height="40" width="40" alt="LOGO" srcset="">
-            Shadow
-        </a>
-        <div class="text-white"><a href="#" style="cursor: pointer;" class="text-white"><i
-                    class="fab fa-facebook-square s" style="margin-right: 10px;"></i></a>
-            <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-github"
-                    style="margin-right: 10px;"></i></a>
-            <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-instagram"
-                    style="margin-right: 10px;"></i></a>
-            <a href="#" style="cursor: pointer;" class="text-white"><i class="fab s fa-linkedin"
-                    style="margin-right: 10px;"></i></a></div>
-    </nav>
-    <!-- After navigation bar contents-->
-    <div class="row">
-        <div class="col-sm-2 side-bar" id="sidebar" style="overflow: hidden; background-color: #282828;">
-            <ul class="nav flex-column text-white">
-                <li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-active" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="switchview('pages/post.html');">Trending</a>
-                </li>
-            </ul>
-            <hr>
-            <!--button type="button" class="btn btn-success align-middle" data-toggle="modal"
-                data-target="#subscribeModal">Subscribe</button-->
-            <div class="text-white">
-                subscribe for updates 
-                <input type="email" name="email" id="email" placeholder="Email Id" style="margin: 2px;">
-                <i class="far float-right fa-paper-plane text-white" style="margin: 4px; margin-bottom: 10px;"></i>
-            </div>
-            <hr>
-            <div class="text-white">
-                <p style="margin-top: auto ;">Copyright ©2019 <br> All rights reserved | <br>
-                    made with <i class="far fa-heart"></i> by Ajinkya</p>
-            </div>
-        </div>
-        <div class="col-sm-7 text-white " id="post-area" style="overflow-y: scroll; height: 90vh; margin: 10px;">
-            <!--main contents-->
-            <h2>A Loving Heart is the Truest Wisdom</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-<img style="width: 80%;" src="../images/image_6.jpg" alt="post image_6" srcset="">
-<p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-<h2>#2. Creative WordPress Themes</h2>
-<p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-<img src="../images/image_6.jpg" alt="post image_6" srcset="">
-<p>
-        Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.
-        Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.
-        Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!
-        Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?
-</p>
-        </div>
-        <!-- Right Side Bar-->
-        <div class="col-sm bg-dark" style="height: 90vh; overflow-y: scroll; ">
+      <img src="../images/image_6.jpg" height="40" width="40" alt="LOGO" srcset="">
+      Shadow
+    </a>
+    <div class="text-white"><a href="#" style="cursor: pointer;" class="text-white"><i class="fab fa-facebook-square s"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-github"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="s fab fa-instagram"
+          style="margin-right: 10px;"></i></a>
+      <a href="#" style="cursor: pointer;" class="text-white"><i class="fab s fa-linkedin"
+          style="margin-right: 10px;"></i></a></div>
+  </nav>
 
-            <div style="margin-left: 20px;">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-sm" style="margin-top: 40px; margin-right: 40px; margin-bottom: 40px;">
-                        <i style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); -ms-transform: translateY(-50%);"
-                            class="fa fa-search"></i>
-                        <input class="form-control d-inline-block" type="text" placeholder="Search.." name="search">
-                    </div>
-                </div>
-                <h4 class="text-white" style="margin-bottom: 40px;"><i>Categories</i></h4>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
-                <p class="text-white">Fashion (10)</p>
-                <hr>
+  <!----------After Main Navbar---------->
+  <div class="row">
+    <div class="col-sm-2 side-bar" id="sidebar" style="overflow: hidden; background-color: #282828;">
+      <ul class="nav flex-column text-white">
+        <li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="switchview('pages/post.html');">Trending</a>
+        </li>
+      </ul>
+      <hr>
+      <!--button type="button" class="btn btn-success align-middle" data-toggle="modal"
+            data-target="#subscribeModal">Subscribe</button-->
+      <div class="text-white">
+        subscribe for updates
+        <input type="email" name="email" id="email" placeholder="Email Id" style="margin: 2px;">
+        <i class="far float-right fa-paper-plane text-white" style="margin: 4px; margin-bottom: 10px;"></i>
+      </div>
+      <hr>
+      <div class="text-white">
+        <p style="margin-top: auto ;">Copyright ©2019 <br> All rights reserved | <br>
+          made with <i class="far fa-heart"></i> by Ajinkya</p>
+      </div>
+    </div>
+    <div class="col-sm text-white " id="post-area" style="overflow-y: scroll; height: 90vh; margin: 10px;">
+      <!--main contents-->
+      
+     <div class="row">
+         <div class="col-sm-9" style="margin-bottom: 40px;">
+                <h2 id="title-id"><div class="progress align-middle">
+                        <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                      </div></h2>
+                      <hr>
+                <div id="post-content"></div>
+                <div id="chip-area"></div>
+         </div>
+         <div class="col-sm-3">
+                <div class="bg-dark" style="">
 
-                <h4 class="text-white" style="margin-bottom: 40px;"><i>Popular</i></h4>
+                        <div style="margin-left: 20px;">
+                          <div class="row" style="margin-top: 30px;">
+                            <div class="col-sm" style="margin-top: 40px; margin-right: 40px; margin-bottom: 40px;">
+                              <i style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); -ms-transform: translateY(-50%);"
+                                class="fa fa-search"></i>
+                              <input class="form-control d-inline-block" type="text" placeholder="Search.." name="search">
+                            </div>
+                          </div>
+                          <h4 class="text-white" style="margin-bottom: 40px;"><i>Categories</i></h4>
+                          <p class="text-white">Fashion (10)</p>
+                          <hr>
+                          
+                          <h4 class="text-white" style="margin-bottom: 20px;"><i>Popular</i></h4>
+                  
+                          <div class="row text-white">
+                                <div class="col-sm align-top">
+                                   <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+                                   <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+                                   <i class="far fa-comment-dots text-white"></i> 13
+                                   <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+                                 </div>
+                               </div>
+                          <hr>
+                         
+                          <div class="row text-white">
+                           <div class="col-sm align-top">
+                              <h6 class="text-white">Title of the your best post will be here so check it..</h6>
+                              <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
+                              <i class="far fa-comment-dots text-white"></i> 13
+                              <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
+                            </div>
+                          </div>
+                          <hr>
+                          <br><br><br><br>
+                        </div>
+                  
+                      </div>
+         </div>
+     </div>
 
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-white">
-                    <div class="col-sm-3">
-                        <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
-                    </div>
-                    <div class="col-sm align-top">
-                        <h6 class="text-white">Title of the your best post will be here so check it..</h6>
-                        <i class="far fa-calendar-alt text-white"></i> Feb 20,1999 <span> </span><br>
-                        <i class="far fa-comment-dots text-white"></i> 13
-                        <i class="far fa-folder text-white" style="padding-left: 10px;"></i> Travel
-                    </div>
-                </div>
-                <hr>
-                <br><br><br><br>
-            </div>
-
-        </div>
+       
     </div>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="../jquery.js"></script>
-    <script src="app.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+
+    <!-- Right Side Bar-->
+
+  </div>
+
+
+
+
+  <!---------------------------------Scripts------------------------------------------------------------->
+  <script src="../scripts/jquery.js"></script>
+  <!--script src="../scripts/app.js"></script-->
+  <script src="../scripts/app2.js"></script>
+  <script>
+      var doc_id="id";
+        var querystring=decodeURIComponent(window.location.search);
+        querystring=querystring.substring(1);
+        var query=querystring.split("&id=");
+        for(var i=0;i<query.length;i++){
+          console.log(i+" : "+query[i]);
+         // document.getElementById("title-id").innerHTML=query[i].substr(3);
+        
+          doc_id=query[i].substr(3);
+          if(doc_id===""){
+              doc_id="no-id";
+          }
+        }
+
+
+        </script>
+        <script src="fir-post.js"></script>
 </body>
 
 </html>
