@@ -11,6 +11,9 @@
     display: none;
 }
 @media (max-width: 799.98px) {
+  .sub-area{
+      display: none;
+  }
     .side-bar {
         transform: translateX(-300px);
         transition: 2sec ease-in-out;
@@ -20,12 +23,17 @@
     }
 }
 @media (min-width: 800px) {
+    /*for big screen*/
+    .sub-area{
+        display: block;
+    }
     #toggle-icon {
         display: none;
     }
     .close {
         display: none;
     }
+    
     #sidebar {
         height: 90vh;
     }
@@ -89,3 +97,7 @@ div::-webkit-scrollbar {
     color:crimson;
       transition-duration: .5s;
   }
+  .sub-btn:hover{
+      color:crimson;
+  }
+  

@@ -24,3 +24,6 @@ $('#myModal').on('shown.bs.modal', function () {
           $("#post-area").html(data);
       });
   }
+
+ 
+ 
