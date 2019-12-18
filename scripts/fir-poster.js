@@ -73,11 +73,21 @@ document.addEventListener('DOMContentLoaded', function () {
                                     console.error("Error removing document: ", error);
                                 });
 
+                                db.collection('light_post').add({
+                                    Title: title,
+                                    Thumbnail: downloadURL,
+                                    Date: date,
+                                    post_id: docRef.id
+                                }).then(function(lightref){
+                                    console.log("light post written at : "+lightref.id);
+                                });
+
                                 $('.modal-body').hide();
                                 document.getElementById("modal2-title").innerHTML = "Published Successfully";
                                 $("#modal2-title").addClass("text-white");
                                 $(".modal-c-3").addClass("bg-success");
                                 window.location.href = "public/posts.html?id=" + docRef.id;
+
                             })
 
                             .catch(function (error) {

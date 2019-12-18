@@ -84,6 +84,12 @@
           <div class="row" id="post-list">
               
             </div>
+            <!-------------- Pagination ----------------------------->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                 
+                </ul>
+              </nav>
           </div>
           <div class="col-sm">
                 <!-- Right Side Bar-->
@@ -91,10 +97,10 @@
 
         <div style="margin-left: 20px;">
           <div class="row" style="margin-top: 30px;">
-            <div class="col-sm" style="margin-top: 40px; margin-right: 40px; margin-bottom: 40px;">
+            <div class="col-sm autocomplete" style="margin-top: 20px; margin-right: 40px; margin-bottom: 40px;">
               <i style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); -ms-transform: translateY(-50%);"
                 class="fa fa-search"></i>
-              <input class="form-control d-inline-block" type="text" placeholder="Search.." name="search">
+              <input class="form-control d-inline-block" type="text" id="myInput" placeholder="Search.." name="search">
             </div>
           </div>
           <h4 class="text-white" style="margin-bottom: 40px;"><i>Categories</i></h4>
@@ -105,9 +111,9 @@
 
           <div id="subscribe-area" style="margin-top: 10px; margin-bottom: 10px;">
             <p class="text-white">subscribe for updates :</p><br>
-            <input type="text" class="form-control d-inline-block" style="width: 80%;" placeholder="Email id">
-            <i class="far fa-paper-plane text-white sub-btn" id="" style="margin: 4px;"></i>
-          </div>
+            <button type="button" class="btn btn-light" style="width: 90%;" data-toggle="modal" data-target="#sub-modal">
+                Subscribe
+              </button> </div>
   
           <h4 class="text-white" style="margin-bottom: 40px;"><i>Popular</i></h4>
   
@@ -158,12 +164,15 @@
     </div>
   </div>
   <!------------------------------------------------------------------------>
+  <script src="scripts/auto-complete.js"></script>
+
   <script src="scripts/jquery.js"></script>
   <script src="scripts/app.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
 
   <script src="scripts/app2.js"></script>
   <script src="scripts/index.js"></script>
+  <script src="scripts/pagination.js"></script>
 
 </body>
 

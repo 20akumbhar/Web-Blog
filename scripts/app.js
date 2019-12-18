@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
   try {
     let app = firebase.app();
     let db=firebase.firestore();
-    let citiesRef = db.collection('Posts');
+    let citiesRef = db.collection('light_post');
     var item="";
-  /* let query = citiesRef.where('Status', '==', 'Published').get()
+   let query = citiesRef.get()
       .then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
@@ -33,15 +33,36 @@ document.addEventListener('DOMContentLoaded', function () {
           item=item+"<i class='far fa-calendar-alt text-white'></i>"+doc.data().Date+"<span> </span>";
           item=item+"<i class='far fa-folder text-white' style='padding-left: 10px;'></i> Travel";
           item=item+"<i class='far fa-comment-dots text-white' style='padding-left: 10px;'></i> 13";
-          item=item+"<a style='color: firebrick; cursor: pointer;' href='public/posts.html?id="+doc.id+"'>Read More ></a>";
+          item=item+"<a style='color: firebrick; cursor: pointer;' href='public/posts.html?id="+doc.data().post_id+"'>Read More ></a>";
           item=item+"</div>";
           $("#post-list").append(item);
         });
       })
       .catch(err => {
         console.log('Error getting documents', err);
-      });*/
+      });
+
+
+      //---getting tags---
+      
+let tagRef = db.collection('tags');
+var tags=[];
+query = tagRef.get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }
+        snapshot.forEach(doc => {
+            tags.push(doc.id);
+        });
+console.log("tags are"+tags);
+autocomplete(document.getElementById("myInput"), tags);
+
+    });
   } catch (e) {
     console.error(e);
   }
+
+
 });

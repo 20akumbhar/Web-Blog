@@ -26,9 +26,15 @@ var setWithMerge = SubRef.set({
     mail: mail,
     name: name
 }).then(function() {
+    $("#sub-modal").modal('hide');
     console.log("Subsccription successfully written!");
 });
 
 
 
 }
+
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  });
