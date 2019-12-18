@@ -11,6 +11,10 @@
     display: none;
 }
 @media (max-width: 799.98px) {
+    /* fro small screen*/
+    .subdiv{
+        text-align: center;
+    }
   .sub-area{
       display: none;
   }
@@ -24,6 +28,7 @@
 }
 @media (min-width: 800px) {
     /*for big screen*/
+    
     .sub-area{
         display: block;
     }

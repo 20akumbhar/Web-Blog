@@ -13,30 +13,35 @@ document.addEventListener('DOMContentLoaded', function () {
   try {
     let app = firebase.app();
     let db=firebase.firestore();
-    let citiesRef = db.collection('light_post');
+    var end=page_no*5;
+    var start=end-4;
+    console.log("starting from : "+start);
+    let citiesRef = db.collection('light_post').orderBy('index').startAt(start-1).limit(5);
     var item="";
    let query = citiesRef.get()
       .then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
+          window.location="404.html";
           return;
         }
 
         snapshot.forEach(doc => {
-          item="";
+          
           console.log(doc.id, '=>', doc.data());
-          item=item+"<div class='col-sm-3' style='padding-left: 20px; padding-top: 20px; text-align: center;'>";
+          item=item+"<div class='col-lg-3' style='padding-left: 20px; padding-top: 20px; text-align: center;'>";
           item=item+"<img src='"+doc.data().Thumbnail+"' width='150' height='150' alt='post img' class='border rounded-circle'>";
           item=item+"</div>";
-          item=item+"<div class='col-sm-8 text-white' style='padding-top: 20px; padding-left: 20px;'>";
+          item=item+"<div class='col-lg-8 text-white subdiv' style='padding-top: 20px; padding-left: 20px;'>";
           item=item+"<h3 class='text-white'>"+doc.data().Title+"</h3>";
           item=item+"<i class='far fa-calendar-alt text-white'></i>"+doc.data().Date+"<span> </span>";
           item=item+"<i class='far fa-folder text-white' style='padding-left: 10px;'></i> Travel";
           item=item+"<i class='far fa-comment-dots text-white' style='padding-left: 10px;'></i> 13";
           item=item+"<a style='color: firebrick; cursor: pointer;' href='public/posts.html?id="+doc.data().post_id+"'>Read More ></a>";
           item=item+"</div>";
-          $("#post-list").append(item);
+          
         });
+        $("#post-list").append(item);
       })
       .catch(err => {
         console.log('Error getting documents', err);
