@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var end=page_no*5;
     var start=end-4;
     console.log("starting from : "+start);
-    let citiesRef = db.collection('light_post').orderBy('index').startAt(start-1).limit(5);
+    let citiesRef = db.collection('light_post').orderBy("Index","desc").startAt(end-1).endAt(start-1).limit(5);
     var item="";
    let query = citiesRef.get()
       .then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
-          window.location="404.html";
+        //  window.location="404.html";
           return;
         }
 

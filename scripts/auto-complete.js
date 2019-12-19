@@ -56,8 +56,11 @@ function autocomplete(inp, arr) {
           /*and and make the current item more visible:*/
           addActive(x);
         } else if (e.keyCode == 13) {
-          /*If the ENTER key is pressed, prevent the form from being submitted,*/
           e.preventDefault();
+          var search=document.getElementById("myInput").value;
+          window.location.href="public/search.html?search="+search;
+          /*If the ENTER key is pressed, prevent the form from being submitted,*/
+          
           if (currentFocus > -1) {
             /*and simulate a click on the "active" item:*/
             if (x) x[currentFocus].click();

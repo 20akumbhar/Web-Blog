@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
+  <title>Blog-web</title>
 
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/7.5.2/firebase-app.js"></script>
@@ -15,10 +15,10 @@
   <script defer src="/__/firebase/7.5.2/firebase-storage.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
   <script defer src="/__/firebase/init.js"></script>
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.css">
+  <link rel="stylesheet" href="../styles/style.css">
   <script>
     function myFunction() {
   alert("The form was submitted");
@@ -35,7 +35,7 @@
 
       <i class="fas fa-bars" style="font-size: larger; cursor: pointer; padding: 4px;" id="toggle-icon"></i>
 
-      <img src="images/image_6.jpg" height="40" width="40" alt="LOGO" srcset="">
+      <img src="../images/image_6.jpg" height="40" width="40" alt="LOGO" srcset="">
       Shadow
     </a>
     <div class="text-white"><a href="#" style="cursor: pointer;" class="text-white"><i class="fab fa-facebook-square s"
@@ -90,11 +90,11 @@
               
             </div>
             <!-------------- Pagination ----------------------------->
-            <nav aria-label="Page navigation" style="margin-top: 10px;">
+            <!--nav aria-label="Page navigation" style="margin-top: 10px;">
                 <ul class="pagination justify-content-center">
                  
                 </ul>
-              </nav>
+              </nav-->
           </div>
           <div class="col-sm">
                 <!-- Right Side Bar-->
@@ -103,7 +103,7 @@
         <div style="margin-left: 20px;">
           <div class="row" style="margin-top: 30px;">
             <div class="col-sm autocomplete" style="margin-top: 20px; margin-right: 40px; margin-bottom: 40px;">
-              <form id="search-form" onsubmit="">
+              <form id="search-form">
               <input class="form-control d-inline-block" type="text" id="myInput" placeholder="Search.." name="search">
             </form>
             </div>
@@ -124,7 +124,7 @@
   
           <div class="row text-white">
             <div class="col-sm-3">
-              <img src="images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
+              <img src="../images/image_6.jpg" height="60" width="60" alt="post img" srcset="">
             </div>
             <div class="col-sm align-top">
               <h6 class="text-white">Title of the your best post will be here so check it..</h6>
@@ -173,33 +173,33 @@
       var page_no="0";
         var querystring=decodeURIComponent(window.location.search);
         querystring=querystring.substring(1);
-        var query=querystring.split("&page=");
+        var query=querystring.split("&search=");
         for(var i=0;i<query.length;i++){
           console.log(i+" : "+query[i]);
          // document.getElementById("title-id").innerHTML=query[i].substr(3);
         
-          page_no=query[i].substr(5);
+          page_no=query[i].substr(7);
           if(page_no===""){
               page_no=1;
-            //  console.error("no page number");
+              console.error("no page number");
              // window.location.href="404.html";
           }else{
-            //console.error("page no :"+page_no);
+            console.error("page no :"+page_no);
           }
         }
         
 
         </script>
         
-  <script src="scripts/auto-complete.js"></script>
+  <script src="../scripts/auto-complete.js"></script>
 
-  <script src="scripts/jquery.js"></script>
-  <script src="scripts/app.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="../scripts/jquery.js"></script>
 
-  <script src="scripts/app2.js"></script>
-  <script src="scripts/index.js"></script>
-  <script src="scripts/pagination.js"></script>
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="../scripts/app2.js"></script>
+  <script src="../scripts/index.js"></script>
+  <!--script src="../scripts/pagination.js"></script-->
 
 </body>
 

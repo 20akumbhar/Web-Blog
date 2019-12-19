@@ -55,8 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.log('File available at', downloadURL);
                         var today = new Date();
                         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                        var index= today.getFullYear()+(today.getMonth()+1)+today.getDate()+today.getHours()+today.getMinutes();
                         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                         db.collection("Posts").add({
+                            Folder: "Traval",
+                            Index: index,
                             Title: title,
                             Thumbnail: downloadURL,
                             delta: html,
@@ -73,20 +76,30 @@ document.addEventListener('DOMContentLoaded', function () {
                                     console.error("Error removing document: ", error);
                                 });
 
-                                db.collection('light_post').add({
-                                    Title: title,
-                                    Thumbnail: downloadURL,
-                                    Date: date,
-                                    post_id: docRef.id
-                                }).then(function(lightref){
-                                    console.log("light post written at : "+lightref.id);
-                                });
+                                db.collection('total_posts').doc('total_posts').get().then(snap=>{
+                                    console.log("counter is = "+snap.data().count);
 
+                                    db.collection('light_post').add({
+                                        Folder: "Traval",
+                                        Index: snap.data().count,
+                                        Tags: tags,
+                                        Title: title,
+                                        Thumbnail: downloadURL,
+                                        Date: date,
+                                        post_id: docRef.id
+                                    }).then(function(lightref){
+                                        console.log("light post written at : "+lightref.id);
+                                    });
+    
+                                }).catch(function (error) {
+                                    console.error("Error counter : ", error);
+                                });
+                                
                                 $('.modal-body').hide();
                                 document.getElementById("modal2-title").innerHTML = "Published Successfully";
                                 $("#modal2-title").addClass("text-white");
                                 $(".modal-c-3").addClass("bg-success");
-                                window.location.href = "public/posts.html?id=" + docRef.id;
+                               // window.location.href = "public/posts.html?id=" + docRef.id;
 
                             })
 
