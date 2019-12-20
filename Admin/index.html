@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script defer src="/__/firebase/7.5.2/firebase-app.js"></script>
+    <script defer src="/__/firebase/7.5.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.5.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+
+</head>
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler navbar-dark text-white" style="color: white;" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-white"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="../images/image_6.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Blog-Web (Admin)
+        </a>
+        <div class="col-sm collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../poster.html">New Post <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Saved <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Subscribers <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Other <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-primary float-right" style="margin-left: auto;" onclick="signOut();">SignOut</button>
+    </nav>
+
+    <div class="container " style="height: 90vh;">
+        <div class="row">
+            <div class="col-md">
+                <div class="card bg-dark text-white" style="cursor: pointer; text-align: center; margin:20px; height: 200px;"><br>
+                    <h4>SUBSCRIBERS
+                        <hr color="white">
+                    </h4>
+                    <h1 class="align-middle" id="sub_count">0</h1>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-dark text-white" style="cursor: pointer; text-align: center; margin:20px; height: 200px;"><br>
+                    <h4>POSTS
+                        <hr color="white">
+                    </h4>
+                    <h1 class="align-middle" id="count">0</h1>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-dark text-white" style="cursor: pointer; text-align: center; margin:20px; height: 200px;"><br>
+                    <h4>SAVED POSTS
+                        <hr color="white">
+                    </h4>
+                    <h1 class="align-middle">0</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                let app = firebase.app();
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // window.location.href = "index.html";
+                    } else {
+                        window.location.href = "login.html";
+                    }
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        });
+        function signOut() {
+            firebase.auth().signOut().then(function () {
+                window.location.href = "login.html";
+            }).catch(function (error) {
+                // An error happened.
+            });
+        }        
+    </script>
+    <script src="scripts/app.js"></script>
+    <script src="../scripts/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
